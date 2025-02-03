@@ -1,18 +1,29 @@
+//src/App.jsx
+import { ErrorBoundary } from 'react-error-boundary';
+import InteractiveResume from './components/InteractiveResume';
+import PropTypes from 'prop-types';
 
-
-function App() {
-
-
+function ErrorFallback({ error }) {
   return (
-    <>
-    <div>
-    <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <div role="alert" className="p-4 bg-red-100 text-red-700">
+      <p>Something went wrong:</p>
+      <pre className="mt-2">{error.message}</pre>
     </div>
-     
-    </>
-  )
+  );
 }
 
-export default App
+ErrorFallback.propTypes = {
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+function App() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <InteractiveResume />
+    </ErrorBoundary>
+  );
+}
+
+export default App;
