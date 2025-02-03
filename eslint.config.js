@@ -32,7 +32,7 @@ export default [
       "react/no-unknown-property": [
         "error",
         {
-          ignore: ["position", "intensity", "attach", "metalness", "roughness", "emissive", "emissiveIntensity","args"], 
+          ignore: ["position", "intensity", "attach", "metalness", "roughness", "emissive", "emissiveIntensity","args", "rotation"], 
         },
       ],
       "react-refresh/only-export-components": [

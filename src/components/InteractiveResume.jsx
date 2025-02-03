@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import  { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -10,19 +10,41 @@ import {
   Box,
   Sphere,
 } from "@react-three/drei";
+import PropTypes from 'prop-types';
 
 const resumeData = {
   personal: {
     name: "Abdul Salam",
     title: "Full Stack Developer",
-    description: "hi",
-    about: "hi",
-    contact: "hi",
+    description: "Passionate developer with expertise in modern web technologies",
+    about: "Experienced full-stack developer focused on creating innovative solutions",
+    contact: {
+      address: "Karachi",
+      email: "salamjillani@gmail.com",
+      phoneNo: "+923302488872"
+    }
   },
-  experiences: "hi",
-  projects: "hi",
+  experiences: [
+    {
+      role: "Front End Developer",
+      company: "CloudLink",
+      year: "2023-2024",
+      description: "Leading front end development projects",
+      technologies: ["React"]
+    }
+  ],
+  projects: [
+    {
+      title: "Squid Game",
+      description: "Red light, green light game",
+      technologies: ["React", "Three.js"],
+      github: "https://github.com",
+      livedemo: "https://demo.com"
+    }
+  ]
 };
 
+// TextWall Component
 const TextWall = ({ position, rotation, text, onClick, isActive }) => {
   return (
     <group
@@ -53,6 +75,15 @@ const TextWall = ({ position, rotation, text, onClick, isActive }) => {
   );
 };
 
+TextWall.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+  rotation: PropTypes.arrayOf(PropTypes.number).isRequired,
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};
+
+// Desk Component
 const Desk = () => {
   return (
     <group position={[-2, 0, 0]}>
@@ -75,6 +106,7 @@ const Desk = () => {
   );
 };
 
+// Laptop Component
 const Laptop = ({ onClick, isHovered }) => {
   return (
     <group
@@ -107,6 +139,12 @@ const Laptop = ({ onClick, isHovered }) => {
   );
 };
 
+Laptop.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  isHovered: PropTypes.bool.isRequired,
+};
+
+// ContentDisplay Component
 const ContentDisplay = ({ content, position }) => {
   if (!content) return null;
 
@@ -213,6 +251,14 @@ const ContentDisplay = ({ content, position }) => {
   );
 };
 
+ContentDisplay.propTypes = {
+  content: PropTypes.shape({
+    type: PropTypes.oneOf(['personal', 'experience', 'projects']),
+  }),
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+// Room Component
 const Room = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [laptopHovered, setLaptopHovered] = useState(false);
@@ -301,6 +347,7 @@ const Room = () => {
   );
 };
 
+// Main InteractiveResume Component
 const InteractiveResume = () => {
   return (
     <div className="w-full h-screen">
