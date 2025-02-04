@@ -29,12 +29,7 @@ export default [
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
       "react/jsx-no-target-blank": "off",
-      "react/no-unknown-property": [
-        "error",
-        {
-          ignore: ["position", "intensity", "attach", "metalness", "roughness", "emissive", "emissiveIntensity","args", "rotation"], 
-        },
-      ],
+      "react/no-unknown-property": "off",
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },

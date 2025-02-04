@@ -1,7 +1,8 @@
 //src/App.jsx
 import { ErrorBoundary } from 'react-error-boundary';
-import InteractiveResume from './components/InteractiveResume';
 import PropTypes from 'prop-types';
+import Hero from './sections/Hero';
+import Navbar from './sections/Navbar';
 
 function ErrorFallback({ error }) {
   return (
@@ -21,7 +22,8 @@ ErrorFallback.propTypes = {
 function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <InteractiveResume />
+      <Navbar />
+ <Hero />
     </ErrorBoundary>
   );
 }
